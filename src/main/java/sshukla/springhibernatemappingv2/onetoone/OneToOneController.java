@@ -42,6 +42,10 @@ public class OneToOneController {
         this.studentInfoRepo = studentInfoRepo;
     }
 
+    /**
+     * Employee and Employee Info using OneToOne with Join Table approach
+     */
+
     @PostMapping("/employee/create")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
         LOGGER.info("Controller.createEmployee() ---");
@@ -81,6 +85,41 @@ public class OneToOneController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    @PutMapping("/employeeInfo/update")
+    public ResponseEntity<EmployeeInfo> updateEmployeeInfo(@RequestBody EmployeeInfo employeeInfo) {
+        LOGGER.info("Controller.updateEmployeeInfo() ---");
+        EmployeeInfo savedEmployeeInfo = employeeInfoRepo.findById(employeeInfo.getEmployeeInfoId()).orElseThrow(() -> new RuntimeException("EmployeeInfo Not Found!!!"));
+        savedEmployeeInfo.setCountry(employeeInfo.getCountry());
+        savedEmployeeInfo.setState(employeeInfo.getState());
+        savedEmployeeInfo.setCity(employeeInfo.getCity());
+        savedEmployeeInfo.setPinCode(employeeInfo.getPinCode());
+        savedEmployeeInfo.setPhoneNumber(employeeInfo.getPhoneNumber());
+        return ResponseEntity.ok(employeeInfoRepo.save(employeeInfo));
+    }
+
+    @GetMapping("/employeeInfo/all")
+    public ResponseEntity<List<EmployeeInfo>> getAllEmployeeInfo() {
+        LOGGER.info("Controller.getAllEmployeeInfo() ---");
+        return ResponseEntity.ok(employeeInfoRepo.findAll());
+    }
+
+    @GetMapping("/employeeInfo/{employeeInfoId}")
+    public ResponseEntity<EmployeeInfo> getEmployeeInfoById(@PathVariable(value = "employeeInfoId") String employeeInfoId) throws Throwable {
+        LOGGER.info("Controller.getEmployeeInfoById() ---");
+        return ResponseEntity.ok(employeeInfoRepo.findById(employeeInfoId).orElseThrow(() -> new Exception("EmployeeInfo Not Found!!!!")));
+    }
+
+    @DeleteMapping("/employeeInfo/{employeeInfoId}")
+    public ResponseEntity<HttpStatus> deleteEmployeeInfoById(@PathVariable(value = "employeeInfoId") String employeeInfoId) {
+        LOGGER.info("Controller.deleteEmployeeInfoById() ---");
+        employeeInfoRepo.deleteById(employeeInfoId);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    /**
+     * User and User Profile - OneToOne with foreign key approach
+     */
+
     @PostMapping("/user/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         LOGGER.info("Controller.createUser() ---");
@@ -117,6 +156,10 @@ public class OneToOneController {
         userRepo.deleteById(userId);
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+    /**
+     * Student and Student Info - OneToOne with primary key approach
+     */
 
     @PostMapping("/student/create")
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
