@@ -90,6 +90,15 @@ public class OneToOneController {
         return ResponseEntity.ok(userRepo.save(user));
     }
 
+    @PutMapping("/user/update")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        LOGGER.info("Controller.updateUser() ---");
+        User savedUser = userRepo.findById(user.getId()).orElseThrow(() -> new RuntimeException("User Not Found!!!"));
+        savedUser.setName(user.getName());
+        savedUser.setUserProfile(user.getUserProfile());
+        return ResponseEntity.ok(userRepo.save(user));
+    }
+
     @GetMapping("/user/all")
     public ResponseEntity<List<User>> getAllUser() {
         LOGGER.info("Controller.getAllUser() ---");
@@ -111,11 +120,21 @@ public class OneToOneController {
 
     @PostMapping("/student/create")
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        LOGGER.info("Controller.createUser() ---");
+        LOGGER.info("Controller.createStudent() ---");
         student.setStudentId(UUID.randomUUID().toString());
         StudentInfo studentProfile = student.getStudentInfo();
         studentProfile.setStudentInfoId(UUID.randomUUID().toString());
         studentProfile.setStudent(null);
+        return ResponseEntity.ok(studentRepo.save(student));
+    }
+
+    @PutMapping("/student/update")
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
+        LOGGER.info("Controller.updateStudent() ---");
+        Student savedStudent = studentRepo.findById(student.getStudentId()).orElseThrow(() -> new RuntimeException("Student Not Found!!!"));
+        savedStudent.setName(student.getName());
+        savedStudent.setHouse(student.getHouse());
+        savedStudent.setStudentInfo(student.getStudentInfo());
         return ResponseEntity.ok(studentRepo.save(student));
     }
 
