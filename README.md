@@ -1,1 +1,1 @@
-# sprig-hibernate-mapping-v2
+# spring-hibernate-mapping-v2

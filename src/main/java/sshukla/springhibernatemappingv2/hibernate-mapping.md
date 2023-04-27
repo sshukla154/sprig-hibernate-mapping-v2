@@ -31,6 +31,15 @@ OneToOne:
 - _DELETE_ : localhost:8080/v2/api/employee/{employeeId}
 
 - _POST_ : localhost:8080/v2/api/user/create
+   ```
+  {
+    "name": "Hello World1234567899",
+    "userProfile": {
+        "phoneNumber": "76543",
+        "gender": "FEMALE"
+    }
+  }
+  ```
 - _GET_ : localhost:8080/v2/api/user/all
 - _GET_ : localhost:8080/v2/api/user/{userId}
 - _DELETE_ : localhost:8080/v2/api/user/{userId}

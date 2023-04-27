@@ -51,6 +51,17 @@ public class OneToOneController {
         return ResponseEntity.ok(employeeRepo.save(employee));
     }
 
+    @PutMapping("/employee/update")
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
+        LOGGER.info("Controller.updateEmployee() ---");
+        Employee savedEmployee = employeeRepo.findById(employee.getEmployeeId()).orElseThrow(() -> new RuntimeException("Employee Not Found!!!"));
+        savedEmployee.setName(employee.getName());
+        savedEmployee.setDepartment(employee.getDepartment());
+        savedEmployee.setSalary(employee.getSalary());
+        savedEmployee.setEmployeeInfo(employee.getEmployeeInfo());
+        return ResponseEntity.ok(employeeRepo.save(employee));
+    }
+
     @GetMapping("/employee/all")
     public ResponseEntity<List<Employee>> getAllEmployee() {
         LOGGER.info("Controller.getAllEmployee() ---");
@@ -104,6 +115,7 @@ public class OneToOneController {
         student.setStudentId(UUID.randomUUID().toString());
         StudentInfo studentProfile = student.getStudentInfo();
         studentProfile.setStudentInfoId(UUID.randomUUID().toString());
+        studentProfile.setStudent(null);
         return ResponseEntity.ok(studentRepo.save(student));
     }
 

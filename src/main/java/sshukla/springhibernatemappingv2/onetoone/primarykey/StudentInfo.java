@@ -1,5 +1,7 @@
 package sshukla.springhibernatemappingv2.onetoone.primarykey;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -17,7 +19,8 @@ public class StudentInfo {
 
     @OneToOne(mappedBy = "studentInfo")
     @MapsId
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_info_id")
+    @JsonIgnore
     private Student student;
 
     public StudentInfo() {
