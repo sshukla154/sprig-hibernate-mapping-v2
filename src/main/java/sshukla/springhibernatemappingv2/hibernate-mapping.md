@@ -46,8 +46,14 @@ OneToOne:
 - _GET_ : localhost:8080/v2/api/user/all
 - _GET_ : localhost:8080/v2/api/user/{userId}
 - _DELETE_ : localhost:8080/v2/api/user/{userId}
+- _GET_ : localhost:8080/v2/api/userProfile/all
+- _GET_ : localhost:8080/v2/api/userProfile/{userId}
+- _DELETE_ : localhost:8080/v2/api/userProfile/{userId}
 
 - _POST_ : localhost:8080/v2/api/student/create
 - _GET_ : localhost:8080/v2/api/student/all
 - _GET_ : localhost:8080/v2/api/student/{studentId}
 - _DELETE_ : localhost:8080/v2/api/student/{studentId}
+- _GET_ : localhost:8080/v2/api/studentInfo/all
+- _GET_ : localhost:8080/v2/api/studentInfo/{studentId}
+- _DELETE_ : localhost:8080/v2/api/studentInfo/{studentId}

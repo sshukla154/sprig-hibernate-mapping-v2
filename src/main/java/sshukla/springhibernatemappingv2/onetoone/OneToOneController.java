@@ -52,6 +52,7 @@ public class OneToOneController {
         employee.setEmployeeId(UUID.randomUUID().toString());
         EmployeeInfo employeeInfo = employee.getEmployeeInfo();
         employeeInfo.setEmployeeInfoId(UUID.randomUUID().toString());
+        employee.setEmployeeInfo(employeeInfo);
         return ResponseEntity.ok(employeeRepo.save(employee));
     }
 
@@ -63,7 +64,7 @@ public class OneToOneController {
         savedEmployee.setDepartment(employee.getDepartment());
         savedEmployee.setSalary(employee.getSalary());
         savedEmployee.setEmployeeInfo(employee.getEmployeeInfo());
-        return ResponseEntity.ok(employeeRepo.save(employee));
+        return ResponseEntity.ok(employeeRepo.save(savedEmployee));
     }
 
     @GetMapping("/employee/all")
@@ -94,7 +95,7 @@ public class OneToOneController {
         savedEmployeeInfo.setCity(employeeInfo.getCity());
         savedEmployeeInfo.setPinCode(employeeInfo.getPinCode());
         savedEmployeeInfo.setPhoneNumber(employeeInfo.getPhoneNumber());
-        return ResponseEntity.ok(employeeInfoRepo.save(employeeInfo));
+        return ResponseEntity.ok(employeeInfoRepo.save(savedEmployeeInfo));
     }
 
     @GetMapping("/employeeInfo/all")
@@ -127,6 +128,7 @@ public class OneToOneController {
         user.setId(UUID.randomUUID().toString());
         UserProfile userProfile = user.getUserProfile();
         userProfile.setId(UUID.randomUUID().toString());
+        user.setUserProfile(userProfile);
         return ResponseEntity.ok(userRepo.save(user));
     }
 
@@ -136,7 +138,7 @@ public class OneToOneController {
         User savedUser = userRepo.findById(user.getId()).orElseThrow(() -> new RuntimeException("User Not Found!!!"));
         savedUser.setName(user.getName());
         savedUser.setUserProfile(user.getUserProfile());
-        return ResponseEntity.ok(userRepo.save(user));
+        return ResponseEntity.ok(userRepo.save(savedUser));
     }
 
     @GetMapping("/user/all")
@@ -155,6 +157,33 @@ public class OneToOneController {
     public ResponseEntity<HttpStatus> deleteUserById(@PathVariable(value = "userId") String userId) {
         LOGGER.info("Controller.deleteUserById() ---");
         userRepo.deleteById(userId);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PutMapping("/userProfile/update")
+    public ResponseEntity<UserProfile> updateUserProfile(@RequestBody UserProfile userProfile) {
+        LOGGER.info("Controller.updateUserProfile() ---");
+        UserProfile savedUserProfile = userProfileRepo.findById(userProfile.getId()).orElseThrow(() -> new RuntimeException("UserProfile Not Found!!!"));
+        return ResponseEntity.ok(userProfileRepo.save(savedUserProfile));
+    }
+
+    @GetMapping("/userProfile/all")
+    public ResponseEntity<List<UserProfile>> getAllUserProfile() {
+        LOGGER.info("Controller.getAllEmployeeInfo() ---");
+        return ResponseEntity.ok(userProfileRepo.findAll());
+    }
+
+    @GetMapping("/userProfile/{userProfileId}")
+    public ResponseEntity<UserProfile> getUserProfileById(@PathVariable(value = "userProfileId") String userProfileId) throws Throwable {
+        LOGGER.info("Controller.getUserProfileById() ---");
+        return ResponseEntity.ok(userProfileRepo.findById(userProfileId).orElseThrow(() -> new Exception("UserProfile Not Found!!!!")));
+    }
+
+    // Todo: Not performing delete
+    @DeleteMapping("/userProfile/{userProfileId}")
+    public ResponseEntity<HttpStatus> deleteUserProfileById(@PathVariable(value = "userProfileId") String userProfileId) {
+        LOGGER.info("Controller.deleteUserProfileById() ---");
+        userProfileRepo.deleteById(userProfileId);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -198,6 +227,34 @@ public class OneToOneController {
     public ResponseEntity<HttpStatus> deleteStudentById(@PathVariable(value = "studentId") String studentId) {
         LOGGER.info("Controller.deleteStudentById() ---");
         studentRepo.deleteById(studentId);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PutMapping("/studentInfo/update")
+    public ResponseEntity<StudentInfo> updateStudentInfo(@RequestBody StudentInfo studentInfo) {
+        LOGGER.info("Controller.updateStudentInfo() ---");
+        StudentInfo savedStudentInfo = studentInfoRepo.findById(studentInfo.getStudentInfoId()).orElseThrow(() -> new RuntimeException("StudentInfo Not Found!!!"));
+        savedStudentInfo.setGrade(studentInfo.getGrade());
+        return ResponseEntity.ok(studentInfoRepo.save(studentInfo));
+    }
+
+    @GetMapping("/studentInfo/all")
+    public ResponseEntity<List<EmployeeInfo>> getAllStudentInfo() {
+        LOGGER.info("Controller.getAllEmployeeInfo() ---");
+        return ResponseEntity.ok(employeeInfoRepo.findAll());
+    }
+
+    @GetMapping("/studentInfo/{studentInfoId}")
+    public ResponseEntity<StudentInfo> getStudentInfoById(@PathVariable(value = "studentInfoId") String studentInfoId) throws Throwable {
+        LOGGER.info("Controller.getStudentInfoById() ---");
+        return ResponseEntity.ok(studentInfoRepo.findById(studentInfoId).orElseThrow(() -> new Exception("StudentInfoId Not Found!!!!")));
+    }
+
+    // Todo: Not performing delete
+    @DeleteMapping("/studentInfo/{studentInfoId}")
+    public ResponseEntity<HttpStatus> deleteStudentInfoById(@PathVariable(value = "studentInfoId") String studentInfoId) {
+        LOGGER.info("Controller.deleteStudentInfoById() ---");
+        studentInfoRepo.deleteById(studentInfoId);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
