@@ -29,6 +29,9 @@ OneToOne:
 - _GET_ : localhost:8080/v2/api/employee/all
 - _GET_ : localhost:8080/v2/api/employee/{employeeId}
 - _DELETE_ : localhost:8080/v2/api/employee/{employeeId}
+- _GET_ : localhost:8080/v2/api/employeeInfo/all
+- _GET_ : localhost:8080/v2/api/employeeInfo/{employeeInfoId}
+- _DELETE_ : localhost:8080/v2/api/employeeInfo/{employeeInfoId}
 
 - _POST_ : localhost:8080/v2/api/user/create
    ```
