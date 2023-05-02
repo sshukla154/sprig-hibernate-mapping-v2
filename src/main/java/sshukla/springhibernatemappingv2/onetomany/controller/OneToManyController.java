@@ -70,18 +70,24 @@ public class OneToManyController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping("/comment/create")
-    public ResponseEntity<Comment> createComment(@RequestAttribute String postId, @RequestBody Comment comment) throws Exception {
+    @PostMapping("/comment/create")
+    public ResponseEntity<Post> createComment(@RequestParam("postId") String postId, @RequestBody Comment comment) throws Exception {
         LOGGER.info("Controller.createComment() ---");
-        Post post = postRepo.findById(postId).orElseThrow(() -> new Exception("Post Not Found!!!!"));
-        Comment savedComment = commentRepo.findById(comment.getCommentId()).orElseThrow(() -> new RuntimeException("Comment Not Found!!!"));
-        return ResponseEntity.ok(commentRepo.save(savedComment));
+        Post post = postRepo.findById(postId).orElseThrow(() -> new Exception("Post Not Found!!!!"));;
+        comment.setCommentId(UUID.randomUUID().toString());
+        comment.setCreatedAt(LocalDateTime.now());
+        commentRepo.save(comment);
+        post.getComments().add(comment);
+        return ResponseEntity.ok(postRepo.save(post));
     }
 
     @PutMapping("/comment/update")
     public ResponseEntity<Comment> updateComment(@RequestBody Comment comment) {
         LOGGER.info("Controller.updateComment() ---");
+//        Post post = postRepo.findById(postId).orElseThrow(() -> new Exception("Post Not Found!!!!"));;
         Comment savedComment = commentRepo.findById(comment.getCommentId()).orElseThrow(() -> new RuntimeException("Comment Not Found!!!"));
+        savedComment.setUpdatedAt(LocalDateTime.now());
+        savedComment.setText(comment.getText());
         return ResponseEntity.ok(commentRepo.save(savedComment));
     }
 

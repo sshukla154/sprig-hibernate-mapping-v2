@@ -22,7 +22,4 @@ public class Comment {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String text;
-//    @ManyToOne
-//    @JoinColumn(name="post_id", nullable=false)
-//    private Post post;
 }

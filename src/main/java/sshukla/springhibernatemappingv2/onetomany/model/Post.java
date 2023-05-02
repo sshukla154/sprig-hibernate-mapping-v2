@@ -1,5 +1,6 @@
 package sshukla.springhibernatemappingv2.onetomany.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,5 +31,6 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "post_foreign_key_id")
+    @JsonIgnore
     private Set<Comment> comments = new HashSet<>();
 }
