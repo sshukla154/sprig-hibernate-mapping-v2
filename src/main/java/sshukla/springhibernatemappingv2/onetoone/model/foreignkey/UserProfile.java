@@ -1,4 +1,4 @@
-package sshukla.springhibernatemappingv2.onetoone.foreignkey;
+package sshukla.springhibernatemappingv2.onetoone.model.foreignkey;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

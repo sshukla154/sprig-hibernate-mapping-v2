@@ -5,12 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sshukla.springhibernatemappingv2.onetoone.foreignkey.User;
-import sshukla.springhibernatemappingv2.onetoone.foreignkey.UserProfile;
-import sshukla.springhibernatemappingv2.onetoone.jointable.Employee;
-import sshukla.springhibernatemappingv2.onetoone.jointable.EmployeeInfo;
-import sshukla.springhibernatemappingv2.onetoone.primarykey.Student;
-import sshukla.springhibernatemappingv2.onetoone.primarykey.StudentInfo;
+import sshukla.springhibernatemappingv2.onetoone.model.foreignkey.User;
+import sshukla.springhibernatemappingv2.onetoone.model.foreignkey.UserProfile;
 import sshukla.springhibernatemappingv2.onetoone.repo.*;
 
 import java.util.List;

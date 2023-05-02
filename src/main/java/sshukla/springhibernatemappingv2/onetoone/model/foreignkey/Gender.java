@@ -1,4 +1,4 @@
-package sshukla.springhibernatemappingv2.onetoone.foreignkey;
+package sshukla.springhibernatemappingv2.onetoone.model.foreignkey;
 
 /**
  * Created by `Seemant Shukla` on 26-04-2023

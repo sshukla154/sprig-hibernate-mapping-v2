@@ -1,4 +1,4 @@
-package sshukla.springhibernatemappingv2.onetoone.primarykey;
+package sshukla.springhibernatemappingv2.onetoone.model.primarykey;
 
 import javax.persistence.*;
 

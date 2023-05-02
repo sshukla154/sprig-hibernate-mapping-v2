@@ -1,4 +1,4 @@
-package sshukla.springhibernatemappingv2.onetoone.jointable;
+package sshukla.springhibernatemappingv2.onetoone.model.jointable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

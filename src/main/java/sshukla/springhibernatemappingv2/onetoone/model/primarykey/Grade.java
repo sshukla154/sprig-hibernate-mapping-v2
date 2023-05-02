@@ -1,4 +1,4 @@
-package sshukla.springhibernatemappingv2.onetoone.primarykey;
+package sshukla.springhibernatemappingv2.onetoone.model.primarykey;
 
 /**
  * Created by `Seemant Shukla` on 27-04-2023
