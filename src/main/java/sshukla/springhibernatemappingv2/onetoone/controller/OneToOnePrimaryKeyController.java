@@ -17,7 +17,7 @@ import java.util.UUID;
  */
 
 @RestController
-@RequestMapping("/v2/api/")
+@RequestMapping("/onetoone/v1/api/")
 public class OneToOnePrimaryKeyController {
 
     Logger LOGGER = LoggerFactory.getLogger(OneToOnePrimaryKeyController.class);
