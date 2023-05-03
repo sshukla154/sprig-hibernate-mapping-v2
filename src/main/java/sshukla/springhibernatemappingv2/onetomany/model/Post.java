@@ -29,8 +29,11 @@ public class Post {
     private String description;
     private String title;
 
+    // one to many unidirectional mapping
+    // default fetch type for OneToMany: LAZY
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "post_foreign_key_id")
+    @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     @JsonIgnore
     private Set<Comment> comments = new HashSet<>();
 }

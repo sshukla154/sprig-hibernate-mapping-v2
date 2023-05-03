@@ -66,25 +66,33 @@ public class OneToManyController {
     @DeleteMapping("/post/{postId}")
     public ResponseEntity<HttpStatus> deletePostById(@PathVariable(value = "postId") String postId) {
         LOGGER.info("Controller.deletePostById() ---");
-        postRepo.deleteById(postId);
+
+        Post savedPost = postRepo.findById(postId).orElseThrow(() -> new RuntimeException("Post Not Found!!!"));
+        savedPost.getComments().stream().findAny().ifPresent(comment -> {
+            try {
+                throw new Exception("Comment Exists for this Post, Please delete the comment first!!!");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PostMapping("/comment/create")
-    public ResponseEntity<Post> createComment(@RequestParam("postId") String postId, @RequestBody Comment comment) throws Exception {
+    public ResponseEntity<Comment> createComment(@RequestParam("postId") String postId, @RequestBody Comment comment) throws Exception {
         LOGGER.info("Controller.createComment() ---");
         Post post = postRepo.findById(postId).orElseThrow(() -> new Exception("Post Not Found!!!!"));;
         comment.setCommentId(UUID.randomUUID().toString());
         comment.setCreatedAt(LocalDateTime.now());
         commentRepo.save(comment);
         post.getComments().add(comment);
-        return ResponseEntity.ok(postRepo.save(post));
+        postRepo.save(post);
+        return ResponseEntity.ok(comment);
     }
 
     @PutMapping("/comment/update")
     public ResponseEntity<Comment> updateComment(@RequestBody Comment comment) {
         LOGGER.info("Controller.updateComment() ---");
-//        Post post = postRepo.findById(postId).orElseThrow(() -> new Exception("Post Not Found!!!!"));;
         Comment savedComment = commentRepo.findById(comment.getCommentId()).orElseThrow(() -> new RuntimeException("Comment Not Found!!!"));
         savedComment.setUpdatedAt(LocalDateTime.now());
         savedComment.setText(comment.getText());
