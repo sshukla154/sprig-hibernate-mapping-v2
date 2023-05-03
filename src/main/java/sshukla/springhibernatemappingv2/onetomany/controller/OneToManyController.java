@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sshukla.springhibernatemappingv2.onetomany.model.Comment;
-import sshukla.springhibernatemappingv2.onetomany.model.Post;
+import sshukla.springhibernatemappingv2.onetomany.model.unidirectional.Comment;
+import sshukla.springhibernatemappingv2.onetomany.model.unidirectional.Post;
 import sshukla.springhibernatemappingv2.onetomany.repo.CommentRepo;
 import sshukla.springhibernatemappingv2.onetomany.repo.PostRepo;
 

@@ -1,4 +1,4 @@
-package sshukla.springhibernatemappingv2.onetomany.model;
+package sshukla.springhibernatemappingv2.onetomany.model.unidirectional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

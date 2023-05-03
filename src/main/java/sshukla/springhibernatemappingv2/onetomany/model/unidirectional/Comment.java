@@ -1,4 +1,4 @@
-package sshukla.springhibernatemappingv2.onetomany.model;
+package sshukla.springhibernatemappingv2.onetomany.model.unidirectional;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
