@@ -8,6 +8,8 @@
       E.G.
    3. Using Primary Key
 2. OneToMany:
+   1. UniDirectional
+   2. BiDirectional
 3. ManyToMany:
 
 ## URLS:
@@ -58,8 +60,8 @@
 - _GET_ : localhost:8080/onetoone/v1/api/studentInfo/{studentId}
 - _DELETE_ : localhost:8080/onetoone/v1/api/studentInfo/{studentId}
 
-### OneToMany:
-- _POST_ : localhost:8080/onetomany/v1/api/post/create
+### OneToMany: UniDirectional
+- _POST_ : localhost:8080/onetomany/uni/v1/api/post/create
 ```
 {
     "content": "hello Worrld I am for delete",
@@ -68,19 +70,46 @@
 }
 ```
 
-- _PUT_ : localhost:8080/onetomany/v1/api/post/update
-- _GET_ : localhost:8080/onetomany/v1/api/post/all
-- _GET_ : localhost:8080/onetomany/v1/api/post/{postId}
-- _DELETE_ : localhost:8080/onetomany/v1/api/post/{postId}
+- _PUT_ : localhost:8080/onetomany/uni/v1/api/post/update
+- _GET_ : localhost:8080/onetomany/uni/v1/api/post/all
+- _GET_ : localhost:8080/onetomany/uni/v1/api/post/{postId}
+- _DELETE_ : localhost:8080/onetomany/uni/v1/api/post/{postId}
 
-- _POST_ : localhost:8080/onetomany/v1/api/comment/create?postId={postId}
+- _POST_ : localhost:8080/onetomany/uni/v1/api/comment/create?postId={postId}
 ```
 {
    "text": "First comment"
 }
 ```
 
-- _PUT_ : localhost:8080/onetomany/v1/api/comment/update
-- _GET_ : localhost:8080/onetomany/v1/api/comment/all
-- _GET_ : localhost:8080/onetomany/v1/api/comment/{commentId}
-- _DELETE_ : localhost:8080/onetomany/v1/api/comment/{commentId}
+- _PUT_ : localhost:8080/onetomany/uni/v1/api/comment/update
+- _GET_ : localhost:8080/onetomany/uni/v1/api/comment/all
+- _GET_ : localhost:8080/onetomany/uni/v1/api/comment/{commentId}
+- _DELETE_ : localhost:8080/onetomany/uni/v1/api/comment/{commentId}
+
+### OneToMany: BiDirectional
+- _POST_ : localhost:8080/onetomany/bi/v1/api/post/create
+```
+{
+    "content": "hello Worrld I am for delete",
+    "description": "Hello World I am for delete",
+    "title": "HelloWorld I am for delete"
+}
+```
+
+- _PUT_ : localhost:8080/onetomany/bi/v1/api/post/update
+- _GET_ : localhost:8080/onetomany/bi/v1/api/post/all
+- _GET_ : localhost:8080/onetomany/bi/v1/api/post/{postId}
+- _DELETE_ : localhost:8080/onetomany/bi/v1/api/post/{postId}
+
+- _POST_ : localhost:8080/onetomany/bi/v1/api/comment/create?postId={postId}
+```
+{
+   "text": "First comment"
+}
+```
+
+- _PUT_ : localhost:8080/onetomany/bi/v1/api/comment/update
+- _GET_ : localhost:8080/onetomany/bi/v1/api/comment/all
+- _GET_ : localhost:8080/onetomany/bi/v1/api/comment/{commentId}
+- _DELETE_ : localhost:8080/onetomany/bi/v1/api/comment/{commentId}

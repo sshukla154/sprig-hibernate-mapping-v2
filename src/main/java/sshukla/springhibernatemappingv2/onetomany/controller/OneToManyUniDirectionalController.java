@@ -19,15 +19,15 @@ import java.util.UUID;
  */
 
 @RestController
-@RequestMapping("/onetomany/v1/api")
-public class OneToManyController {
+@RequestMapping("/onetomany/uni/v1/api")
+public class OneToManyUniDirectionalController {
 
-    Logger LOGGER = LoggerFactory.getLogger(OneToManyController.class);
+    Logger LOGGER = LoggerFactory.getLogger(OneToManyUniDirectionalController.class);
 
     private final PostRepo postRepo;
     private final CommentRepo commentRepo;
 
-    public OneToManyController(PostRepo postRepo, CommentRepo commentRepo) {
+    public OneToManyUniDirectionalController(PostRepo postRepo, CommentRepo commentRepo) {
         this.postRepo = postRepo;
         this.commentRepo = commentRepo;
     }
